@@ -4,7 +4,7 @@ import androidhelper
 import time
 droid = androidhelper.Android()
 
-netname='eduroam'
+netname='wifi'
 key='key'.encode('utf-8')
 tout=0.2
 currsig=[0]*128
@@ -93,7 +93,7 @@ try:
             cssid=a['ssid'][1:-1]
             if debug: print(cssid)
             if debug: print(netname)
-            if cssid==netname: #connected to eduroam
+            if cssid==netname: #connected to wifi name
                 if debug: print('recognised')
                 crssi=int(a['rssi'])
                 cbssid=a['bssid']
@@ -144,7 +144,7 @@ try:
                     if not isgooglestupid: qs=dr()[1]
                     if nt: nt=False
                     else: nt=True
-            else: #Connected to Something other than eduroam
+            else: #Connected to Something other than wifi name
                 if debug: print('other network')
                 if not isgooglestupid:
                     dn()
@@ -155,10 +155,10 @@ try:
                 else: nt=True
         else: #Not connected to wifi (could be reconnecting)
             if debug: print('wpa supplicant not connected')
-            if not cond: #Wasn't Just Connected to Eduroam
+            if not cond: #Wasn't Just Connected to wifi name
                 wr()
                 ts(60)
-            else: #Was Just connected to Eduroam
+            else: #Was Just connected to wifi name
                 if not isgooglestupid:
                     dn()
                     ts(3)
@@ -181,7 +181,7 @@ try:
         if not isgooglestupid:
             #Checking if scans have updated
             if nt!=lt: #Scan has been updated
-                #Checking for Eduroam in scans
+                #Checking for wifi name in scans
                 if debug: print('has scanned')
                 lt=nt
                 wood=False
@@ -222,7 +222,7 @@ try:
                     dn()
                     ts(3)
                     qs=dr()[1]
-                    #Checking for Eduroam in scans
+                    #Checking for wifi name in scans
                     if debug: print('has scanned')
                     wood=False
                     yo=True
@@ -246,7 +246,7 @@ try:
                 dn()
                 ts(3)
                 qs=dr()[1]
-                #Checking for Eduroam in scans
+                #Checking for wifi name in scans
                 if debug: print('has scanned')
                 wood=False
                 eis=[]
@@ -260,7 +260,7 @@ try:
                     if ssid==netname:
                         wood=True
                         eisa(i)
-        if not wood: #No Eduroam in range
+        if not wood: #No wifi name in range
             if cond: #Go Ahead and Go into Low Power Mode
                 cond=False
                 dp()
@@ -271,7 +271,7 @@ try:
             else: #Stay in low power mode
                 if debug: print('LP Mode')
                 ts(60)
-        else: #Eduroam detected nearby or connected
+        else: #Wifi Name detected nearby or connected
             if debug: print('network is somehow detected')
             try: ss(key,seaddr)
             except: conn=False #Failure
@@ -287,7 +287,7 @@ try:
                     except:
                         #ts(tout/10.0)
                         break
-            if cond: #Eduroam connected
+            if cond: #wifi name connected
                 if enanything:
                     anything[abs(int(crssi))]+=1
                     currsigdesc[abs(int(crssi))]=int(crssi)
@@ -333,7 +333,7 @@ try:
                 #crssi=-127
                 #cbssid='00:00:00:00:00:00'
                 #cspeed=0
-            else: #Eduroam not connected, but in Range
+            else: #wifi name not connected, but in Range
                 if debug: print('found in scan')
                 if enlasig:
                     if did:
@@ -362,9 +362,9 @@ if encountsig:
     print('encountsig')
     print(currsig) #Internet and Connected
     print(currsigdesc) #Power
-    print(strsig) #No Internet but Eduroam, and stronger signal strength
-    print(allcurrsig) #Connected to Eduroam
+    print(strsig) #No Internet but wifi name, and stronger signal strength
+    print(allcurrsig) #Connected to wifi name
 if enlasig:
     print('enlasig')
     print(lasig) #Reconnected with Different Wifi
-    print(laconn) #Last connected to eduroam
+    print(laconn) #Last connected to wifi name
