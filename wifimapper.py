@@ -5,7 +5,7 @@ import time
 droid = androidhelper.Android()
 
 netname='eduroam'
-key='robotic'.encode('utf-8')
+key='key'.encode('utf-8')
 tout=0.2
 currsig=[0]*128
 allcurrsig=[0]*128
@@ -30,7 +30,7 @@ debug=False #Debug
 isgooglestupid=True #If you have android 8 or 9
 toscan=True #Do Scanning
 
-ip=so.gethostbyname('uofrobotics.hopto.org')
+ip=so.gethostbyname('google.ca')
 port=8081
 buff=1400
 seaddr=(ip,port)
