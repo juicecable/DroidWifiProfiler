@@ -4,9 +4,10 @@ import androidhelper
 import time
 droid = androidhelper.Android()
 
-netname='wifi'
-key='key'.encode('utf-8')
-tout=0.2
+netname='wifi' #set this to your roaming ssid that you want to profile
+key='key'.encode('utf-8') #set this to your client ID string for the ping server
+tout=0.2 #modify this if you know your ping is greater than 200ms to the ping server
+
 currsig=[0]*128
 allcurrsig=[0]*128
 currsigdesc=[0]*128
@@ -27,11 +28,12 @@ enloc=False #Enable Location Services
 enlock=True #Enable Wakelock and full Wifi Lock
 enanylock=True #Enable Scan only Wifi Lock
 debug=False #Debug
-isgooglestupid=True #If you have android 8 or 9
+isgooglestupid=False #If you have android 8 or 9, or 10 with Wifi-Throttling Enabled
 toscan=True #Do Scanning
 
-ip=so.gethostbyname('google.ca')
-port=8081
+ip=so.gethostbyname('google.ca') #Set this to your Ping Server Hostname/IP
+port=8081 #Set this to your Ping Server UDP Port
+
 buff=1400
 seaddr=(ip,port)
 s=so.socket(so.AF_INET,so.SOCK_DGRAM)
